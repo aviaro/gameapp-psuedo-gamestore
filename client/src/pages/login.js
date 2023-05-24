@@ -103,23 +103,24 @@ const Login = props => {
                 toast.error("You didnt type any code");
             }
         }
-        const passwordReset= async() =>{
-            if(email !== "" && password !== ""){
-                const user = {
-                    email: email,
-                    password: password
-                }
-                axios.put(baseURL + '/account/resetPassword',{user})
-                .then(results=>{
-                    toast.success('its working!!!!')
-                })
-                .catch(error=>{
-                    toast.error("something went wrong in catch")
-                })
-        }
-        else
-            toast.error("you didnt type anything")
-    }
+     const passwordReset = async () => {
+  if (email !== '' && password !== '') {
+    const user = {
+      email: email,
+      password: password,
+    };
+
+    axios.put(baseURL + '/account/resetPassword', { user })
+      .then((results) => {
+        toast.success('Password reset successful!');
+      })
+      .catch((error) => {
+        toast.error('Something went wrong during password reset.');
+      });
+  } else {
+    toast.error('Please enter your email and new password.');
+  }
+};
     return(
         
         <>
@@ -228,7 +229,8 @@ const Login = props => {
 
                                     </Form.Group>
                                     </Form>
-                                    <Button variant="primary" style={{width:'100%', marginTop:15}} onClick={passwordReset}>Sign In</Button>
+                                    <Button variant="primary" style={{width:'100%', marginTop:15}} onClick={passwordReset}>reset password</Button>
+                                    <Button variant="light" style={{width:'100%', marginTop:15}} onClick={() => setAuthView('loginView')}>back to login</Button>
 
                         </>
                         ) : (<></>)

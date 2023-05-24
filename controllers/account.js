@@ -116,11 +116,40 @@ router.put('/verifyAccount', async(req,res) => {
     })
 })
 
-router.put('/resetPassword',async(req,res)=>{
-    
-   const user=req.body.user     
-    console.log(user);
-})
+router.put('/resetPassword', async (req, res) => {
+    const user = req.body.user;
+    const newPassword = user.password;
+  
+    Account.findOne({ email: user.email })
+      .then(async (account) => {
+        if (account) {
+          
+          const newHash = await bcryptjs.hash(newPassword, 10);
+  
+          account.password = newHash;
+          account.save()
+            .then(() => {
+              return res.status(200).json({
+                message: 'Password reset successful!',
+              });
+            })
+            .catch((error) => {
+              return res.status(500).json({
+                message: error.message,
+              });
+            });
+        } else {
+          return res.status(401).json({
+            message: 'Account not found.',
+          });
+        }
+      })
+      .catch((error) => {
+        return res.status(500).json({
+          message: error.message,
+        });
+      });
+  });
 
 function generateRandomIntegerInRange(min, max) {
     return Math.floor(Math.random() * (max - min + 1)) + min;
