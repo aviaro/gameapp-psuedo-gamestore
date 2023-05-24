@@ -5,6 +5,8 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Header from '../components/Header.js';
 import GameItem from '../components/GameItem.js';
+import { FcSearch } from "react-icons/fc";
+
 
 const Dashboard = (props) => {
   const baseURL = 'http://localhost:3001/api';
@@ -96,7 +98,7 @@ const Dashboard = (props) => {
                 placeholder="Search by game name"
                 style={{ marginTop: 10 }}
               />
-            </Form>
+            </Form><FcSearch size={40} />
           </Col>
         </Row>
 
