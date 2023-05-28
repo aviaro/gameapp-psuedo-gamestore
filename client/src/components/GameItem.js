@@ -78,9 +78,9 @@ const GameItem = props => {
                                 <NavLink 
                                     key={"product"}
                                     to="/game-details"
-                                    state={{ game: props.game }}
-                                    className='btn btn-info'>
-                                        View
+                                    state={{ product: props.game }}
+                                    className='btn btn-info' style={{marginTop:5}}>
+                                        View-details
                                 </NavLink>
                                 </Col>
                             </Row>
