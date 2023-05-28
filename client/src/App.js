@@ -10,6 +10,7 @@ import Login from "./pages/login";
 import Dashboard from "./pages/Dashboard";
 import Game from "./pages/Game";
 import Cart from "./pages/cart";
+import GameDetails from './components/GameDetails';
 
 function App() {
 
@@ -21,6 +22,7 @@ function App() {
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/game" element={<Game />} />
           <Route path="/cart" element={<Cart />} />
+          <Route path="/game-details" element={<GameDetails />} />
         </Routes>
       </Router>
     </>

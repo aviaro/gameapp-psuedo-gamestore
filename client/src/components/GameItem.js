@@ -1,6 +1,7 @@
 import React, {useState} from "react";
 import { Button,Container, Row, Col, Form, Card } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import { NavLink } from 'react-router-dom';
 
 const GameItem = props => {
 
@@ -61,21 +62,30 @@ const GameItem = props => {
                     <div style={{overflow:'hidden', width:'100%', height:180}}>
                         <Card.Img variant="top" src={props.game.gameImage} />
                     </div>
-                <Card.Body>
-                    <Card.Title style={{fontSize:15}}>{props.game.gameName}</Card.Title>
-                    <Card.Text>Genre: {props.game.genreId.genreName}</Card.Text>
-                    <Card.Text><b style={{fontSize:24}}>${props.game.gamePrice}</b></Card.Text>
-                    <Container>
-                        <Row>
-                            <Col>
-                                <Button variant="info" onClick={() => setIsEditable(!isEditable)}>Edit</Button>
-                            </Col>
-                            <Col>
-                                <Button variant="danger" onClick={props.deleteGameClick}>Delete</Button>
-                            </Col>
-                        </Row>
-                    </Container>
-                </Card.Body>
+                    <Card.Body>
+                        <Card.Title style={{fontSize:15}}>{props.game.gameName}</Card.Title>
+                        <Card.Text>Genre: {props.game.genreId.genreName}</Card.Text>
+                        <Card.Text><b style={{fontSize:24}}>${props.game.gamePrice}</b></Card.Text>
+                        <Container>
+                            <Row>
+                                <Col>
+                                    <Button variant="info" onClick={() => setIsEditable(!isEditable)}>Edit</Button>
+                                </Col>
+                                <Col>
+                                    <Button variant="danger" onClick={props.deleteGameClick}>Delete</Button>
+                                </Col>
+                                <Col>
+                                <NavLink 
+                                    key={"product"}
+                                    to="/game-details"
+                                    state={{ game: props.game }}
+                                    className='btn btn-info'>
+                                        View
+                                </NavLink>
+                                </Col>
+                            </Row>
+                        </Container>
+                    </Card.Body>
                 </Card>
                 </>
             )
